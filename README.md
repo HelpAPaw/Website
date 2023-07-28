@@ -40,7 +40,7 @@
 3. **** If you made any content updates to the signal.html or signal_bg pages or to the top nav of the site for navigation, then see the section at the bottom of this readme about how to re-add neccessary javascript to get the QR Code to generate again.
 4. **** Otherwise,  copy the signal pages from the prior release or from the additional-pages folder into c:\temp to overwrite the ones that were just published (because they will be broken)
 5. From the "additional-pages" folder in the source copy privacy_policy.html and apple-app-site-association (has no extension) to c:\temp.   THIS IS ONLY NECC IF THERE WAS A CHANGE TO THESE FILES OR IF STARTING OVER WITH A CLEAN REPO.
-6. **** Now test the site loally make sure your changes look good ****
+6. **** Now test the site loally make sure your changes look good ****  Note that signal and install pages may not look pretty locally, but likely will look pretty once uploaded
 7. Specifically test signal.html and signal_bg.html, any issues with it not working - see comments below about signal pages
 8. If you know GIT, there is probably a proper git command to publish from here, but since I don't, i'll give you the simpleton method:  from the github home (https://github.com/HelpAPaw/Website) click Add File, then upload files, then drag and drop everything inside c:\temp over to github
 9. Make sure to hit the Commit button after the uploads are complete
