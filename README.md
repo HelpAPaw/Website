@@ -1,11 +1,20 @@
 # Help a Paw Website
 ## Tools used to design site
 - Mobirise website designer tool app for PC/Mac (free version) 
-- Free HTML Code Editor extension for Mobirise that let's you edit the source:  https://witsec.nl/extension-code-editor.html
+- Free HTML Code Editor extension for Mobirise that let's you edit the source:  https://witsec.nl/extension-code-editor.html in particular to edit signal.html and bulgarian version
+- Text editor comes in handy, in particular if you run into any trouble getting  signal.html and bulgarian version  (more on signal.html later)
 
 ## Services used to run site
 - Cloudflare:  CDN/web host  (free version)
 - Github (free version):  Where you are reading this now!  While you can upload the website source directly to Cloudflare, you can't download it so it doesn't serve as a good home/shared space for the source.  Its not as feature rich as well.   Also, nice to have a backup/separate copy somewhere else.
+
+## Mobirise as a wysiwyg website design tool
+- Its free version is feature rich
+- It develops tight/fast html/css
+- With the exception of dealing with the signal.html files,  anyone proficient with word/excel/powerpoint can use Mobirise to improve the site.
+- The free version doesn't let us edit the html,  there is a workaround with the aformentioned free extension but not sure how robust that is yet
+- Mobirise doesn't let us do javascript
+- One page, signal.html (and the bulgarian version) have javascript so there is some special care and feeding required for this page (described at the bottom of this readme)
  
 ##  Structure of code here at git
 - The root folder cointains the published/rendered-if-you-will website files.  This is what cloudflare serves up.
@@ -26,13 +35,14 @@
 - Its kind of 3 sites in a way, when you consider the additional-pages files also need to be saved to the website root and these additional-pages are not included in the mobirise source
 
 ## Website Publishing process - (from Mobirise to Git to Cloudflare)
-1. Using Mobirise,  Publish the english (Help a Paw) site to a local folder,  like c:\temp
-2. Make sure that folder is empty
-3. Then publish the Bulgarian site (Help a Paw Bulgarian) site (which is just index_bg.html) to c:\temp.   Since it shares the same assets this will be the only file that really gets published.
-4. From the "extra html pages" folder in the source copy privacy_policy.html and apple-app-site-association (has no extension) to c:\temp.   THIS IS ONLY NECC IF THERE WAS A CHANGE TO THESE FILES OR IF STARTING OVER WITH A CLEAN REPO.
-5. If you know GIT, there is probably a proper git command to publish from here, but since I don't, i'll give you the simpleton method:  from the github home (https://github.com/HelpAPaw/Website) click Add File, then upload files, then drag and drop everything inside c:\temp over to github
-6. Make sure to hit the Commit button after the uploads are complete
-7. A few mins later,  Cloudflare will pick up the changes and update itself.
+1. Using Mobirise,  Publish the english (Help a Paw) site to a local folder,  like c:\temp  (first make sure \temp is empty)
+2. 4. Then publish the Bulgarian site (Help a Paw Bulgarian) site (which is just index_bg.html) to c:\temp.   Since it shares the same assets this will be the only file that really gets published.
+5. From the "extra html pages" folder in the source copy privacy_policy.html and apple-app-site-association (has no extension) to c:\temp.   THIS IS ONLY NECC IF THERE WAS A CHANGE TO THESE FILES OR IF STARTING OVER WITH A CLEAN REPO.
+6. **** Now test the site loally make sure your changes look good ****
+7. Specifically test signal.html and signal_bg.html, any issues with it not working - see comments below about signal pages
+8. If you know GIT, there is probably a proper git command to publish from here, but since I don't, i'll give you the simpleton method:  from the github home (https://github.com/HelpAPaw/Website) click Add File, then upload files, then drag and drop everything inside c:\temp over to github
+9. Make sure to hit the Commit button after the uploads are complete
+10. A few mins later,  Cloudflare will pick up the changes and update itself.
 
 ## Mobirise Source Code Publishing proces
 There is probably a better way of doing this, but for now...
@@ -43,18 +53,19 @@ There is probably a better way of doing this, but for now...
 - Copy the additional-pages folder and original source images folder from a prior release over to c:\temp so everything is in one place
 - Zip everything up into mobirise-source.zip and publish it to git like in step 5 in the above process
 
+## Source Backups/ability to revert
+Revert (undo) isn't really built into Mobirise, but you can export the source as often as you want.  And I do at least once/day when doing development.  Go to Sites on the leftnav, then over on a site, click gear icon and click Export.   The gear icon doesn't show unless the project of interest is already loaded.
 
-# Details details details
+# Details details details - things you may not need but here just in case
 
-## install.html, install_bg.html 
-- these pages are not linked to by the website
-- they are pages linked to from the "outside"
-- they exist in the english "Help a Paw" site/source (vs the Help a Paw Bulgarian site)
+## Cloudflare quirks
+- Don't set CNAME for helpapaw.org or dont set www.helpapaw.org when using cloudflare pages because when you use cloudflare pages it wants to set these themselves and they interfere when you do it manually.  You have to use Cloudflare pages "custom domain" feature/setting to set each of these domains up.  (One setting for both).   Now that it is setup, shouldn't have to deal with this, just FYI
+- Cloudflare has two products:  Cloudflare Pages and "Custom Pages".  It gets confusing.  We're using Cloudflare Pages which is accessed via the initial home screen, left nav ->  Workers and Pages
 
-## signal.html, signal_bg.html 
-- these pages are not linked to by the website, they are pages linked to from the "outside".  
-- They are shown as "signal" and "signal bg" in the Help a Paw english source
-- IMPORTANT: You should not need to modify these , but if you do modify them in Mobirise (perhaps to fix grammar or change the text or images) then you will need to modify them manually with a text editor (or the Code Editor extension) to make sure the javascript QRCode generator still works - see "Modifying Signal Pages" section below.  Test locally to see if signal.html and signal_bg.html create QR Coodes.
+## Contact us forms
+- help.a.paw@outlook.com is setup for receiving contact us form submissions/messages.   It uses a 3rd party service via  https://formoid.net/ to send the email so may need to add this to your address book to clear spam issues
+- To share the Mobirise source with a collaborator, go to Site Settings->Export Project.  The source is a combination of the project.mobirise file and the assets folder
+- Aformentioned extention at the top of this readme
 
 ## privacy_policy.html
 - This is required by Apple or Google,  it is not included in the Mobirise source as it is a plain html file
@@ -62,20 +73,22 @@ There is probably a better way of doing this, but for now...
 ## apple-app-site-association (has no extension) 
 - This is required for Apple, it is not included in the Mobirise source,  no need to edit/worry about it except make sure to keep it published to the website.  Copy it 
 
-## Source Backups/ability to revert
-Revert (undo) isn't really built into Mobirise, but you can export the source as often as you want.  And I do occasionally.  Go to Sites on the leftnav, then over on a site, click gear icon and click Export.   
+## install.html, install_bg.html 
+- these pages are not linked to by the website
+- they are pages linked to from the "outside"
+- they exist in the english "Help a Paw" site/source (vs the Help a Paw Bulgarian site).  Yeah, that's weird but deal with it.
 
+## signal.html, signal_bg.html 
+- these pages are not linked to by the website, they are pages linked to from the "outside" via the mobile app
+- they create a QR code, so when you load these pages either at www.helpapaw.org or locally, a QR code should show up
+- They are shown as "signal" and "signal bg" and exist in the Help a Paw english source
+- You shouldn't have to modify these, but if the topnav changes (and/or maybe even the footer changes) then they may break as far as QR Code generation
+- If they do break you have two options
+- 1) Copy the signal.html and signal_bg.html from a prior version or the additional-pages folder where there are backups, but doing this you might lose some recent changes (like a top nav update) but might be good for a quick fix
+  2) You might need to re-implement (re-add) the required javascript to the source.   This 
+ 
 
-## Mobirise configuration
-- help.a.paw@outlook.com is setup for receiving contact us form submissions/messages.   It uses a 3rd party service via  https://formoid.net/ to send the email so may need to add this to your address book to clear spam issues
-- To share the Mobirise source with a collaborator, go to Site Settings->Export Project.  The source is a combination of the project.mobirise file and the assets folder
-- Aformentioned extention at the top of this readme
-
-## Cloudflare quirks
-- Don't set CNAME for helpapaw.org or dont set www.helpapaw.org when using cloudflare pages because when you use cloudflare pages it wants to set these themselves and they interfere when you do it manually.  You have to use Cloudflare pages "custom domain" feature/setting to set each of these domains up.  (One setting for both).   Now that it is setup, shouldn't have to deal with this, just FYI
-- Cloudflare has two products:  Cloudflare Pages and "Custom Pages".  It gets confusing.  We're using Cloudflare Pages which is accessed via the initial home screen, left nav ->  Workers and Pages
-
-##  Modifying Signal Pages ("signal" or "signal bg" as called via Mobirise, and signal.html and signal_bg.html once published)
+##  Re-adding javascript to the Signal Pages to fix QR Codes not being generated ("signal" or "signal bg" as called via Mobirise, and signal.html and signal_bg.html once published)
 Again, you shouldn't need to update these pages, but if you do then you will need to edit their html after publishing as follows:
 
 1. After the first </head> line in the html (about line 30),  delete the line that says <body> 
@@ -100,3 +113,6 @@ Again, you shouldn't need to update these pages, but if you do then you will nee
     </script>
 3. Look for the text "QRCODE" and remove it
 4. Where that word was, insert the following html:  <p style="max-width: 250px;" id="qrImageParent"></p>
+
+
+
