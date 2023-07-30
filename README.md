@@ -1,6 +1,6 @@
 # Help a Paw Website
 ## Tools used to design site
-- Mobirise website designer tool app for PC/Mac (free version) 
+- Mobirise website designer tool app for PC/Mac (free version)   (Version 5.8.12 was used)
 - Free HTML Code Editor extension for Mobirise that let's you edit the source:  https://witsec.nl/extension-code-editor.html in particular to edit signal.html and bulgarian version
 - Text editor comes in handy, in particular if you run into any trouble getting  signal.html and bulgarian version  (more on signal.html later)
 
